@@ -42,10 +42,27 @@ namespace wlecome
             try
             {
                 cmd.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("check input");
+                textBox1.Clear();
+                textBox2.Clear();
 
-                d = new SqlDataAdapter(cmd.CommandText, con);
+            }
+            d = new SqlDataAdapter(cmd.CommandText, con);
                 dt = new DataTable();
+            try
+            {
                 d.Fill(dt);
+            }
+            catch
+            {
+               
+                textBox1.Clear();
+                textBox2.Clear();
+            }
+           
                 con.Close();
 
 
@@ -53,7 +70,8 @@ namespace wlecome
                 {
                     MessageBox.Show("passowrd mached");
                     this.Close();
-                    dashbord ds = new dashbord();
+                int id = int.Parse(textBox1.Text);
+                    dashbord ds = new dashbord(id);
                     ds.ShowDialog();
 
                 }
@@ -63,13 +81,8 @@ namespace wlecome
                     textBox1.Clear();
                     textBox2.Clear();
                 }
-            }
-            catch (Exception )
-            {
-                MessageBox.Show("check input");
-                textBox1.Clear();
-                textBox2.Clear();
-            }
+            
+           
         }
 
        

@@ -12,9 +12,23 @@ namespace wlecome
 {
     public partial class dashbord : Form
     {
-        public dashbord()
+        int cust_id;
+        public dashbord( int id)
         {
+            cust_id = id;
             InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            withdraw w = new withdraw(cust_id);
+            this.Hide();
+            w.ShowDialog();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+           
         }
     }
 }
